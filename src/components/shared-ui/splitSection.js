@@ -1,14 +1,35 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, {useEffect, useRef, useState} from 'react'
+import styled, {keyframes, css} from 'styled-components'
 
 import {devices} from '../styled-lib'
 
 const SplitSection = ({imgSide="left", imgWidth="40", bgImg, children}) => {
+    const sectionRef = useRef(null);
+    useEffect(() => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.3
+        };
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("appear");
+                    observer.unobserve(entry.target);
+                }
+            })
+        }
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        if (sectionRef.current) observer.observe(sectionRef.current);
+
+        return () => observer.unobserve(sectionRef.current);
+    }, [])
+
     return (
-        <Section>
-            {imgSide === 'left' && <ImageSide bgImg={bgImg} imgWidth={imgWidth}/>}
+        <Section ref={sectionRef}>
+            {imgSide === 'left' && <ImageSide bgImg={bgImg} imgWidth={imgWidth} imgSide="left"/>}
             <ContentSide imgWidth={imgWidth} imgSide={imgSide}>{children}</ContentSide>
-            {imgSide === 'right' && <ImageSide bgImg={bgImg} imgWidth={imgWidth}/>}
+            {imgSide === 'right' && <ImageSide bgImg={bgImg} imgWidth={imgWidth} imgSide="right"/>}
         </Section>
     )
 }
@@ -34,17 +55,26 @@ const ImageSide = styled.div`
   position: relative;
   flex-grow: 1;
   flex-basis: ${props => props.imgWidth}%;
+  transition: transform .350s ease-in-out;
+  transform: translateX(${props => props.imgSide === "left" ? "100%" : "-100%"});
+  ${Section}.appear & {
+    transform: translateX(0);
+  }
 `
 
 const ContentSide = styled.div`
   background-color: white;
-  color: black;
-  height: 500px;
   position: relative;
   flex-grow: 1;
   flex-basis: calc(100% - ${props => props.imgWidth}%);
   z-index: 100;
-  @media(min-width: 1000px) {
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+  ${Section}.appear & {
+      opacity: 1;
+  }
+  @media(min-width: ${devices.tablet}) {
     &::after {
       content: "";
       position: absolute;
@@ -59,5 +89,6 @@ const ContentSide = styled.div`
       transform-origin: bottom ${props => props.imgSide === 'left' ? 'left' : 'right'};
       z-index: -1;
     }
+    opacity: 1;
   }
 `
