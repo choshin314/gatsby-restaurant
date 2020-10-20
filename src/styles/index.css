@@ -16,3 +16,15 @@ html, body {
     font-family: 'Manrope','Montserrat', sans-serif;
     color: var(--dark-grey);
 }
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.5;
+}
