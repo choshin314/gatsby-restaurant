@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Nav from './nav'
-import {Wrapper} from '../styled-lib'
+import {Wrapper, devices} from '../styled-lib'
 
 const Header = () => {
     return (
@@ -20,5 +20,10 @@ const StyledHeader = styled.header`
     position: relative;
     width: 100%;
     height: 4rem;
-    box-shadow: 0px 2px 5px 0px var(--dark-grey);
+    background: rgba(255,255,255,.9);
+    
+    z-index: 110;
+    @media(min-width: ${devices.tablet}) {
+        position: fixed;
+    }
 `

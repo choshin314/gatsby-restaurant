@@ -75,7 +75,7 @@ const Container = styled.div`
     width: 100vw;
     height: calc(100vh - 4rem);
     position: fixed;
-    top: 4rem;
+    top: 116px;
     left: 0;
     background: white;
     transition: transform .2s ease-in-out;
