@@ -17,16 +17,22 @@ export const Wrapper = styled.div`
 `
 export const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: ${props => props.columns};
+    grid-template-columns: 1fr;
     grid-gap: 1rem;
+    @media(min-width: ${devices.tablet}) {
+        grid-template-columns: ${props => props.columns};
+    }
 `
 
 export const Card = styled.div`
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     transition: transform .2s ease-in-out;
+    background: white;
     &::after {
         content: '';
         position: absolute;
+        left: 0;
+        bottom: 0;
         width: 100%;
         height: 100%;
         z-index: -1;
