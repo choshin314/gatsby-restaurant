@@ -20,7 +20,7 @@ const NavItem = styled.li`
         text-decoration: none;
         font-size: ${props => props.mobile ? "1.5rem" : "1.2rem"};
         position: relative;
-        &.active::before {
+        &.active::after {
             content: '';
             color: inherit;
             position: absolute;
