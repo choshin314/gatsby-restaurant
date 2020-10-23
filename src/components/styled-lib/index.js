@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
     padding: 1rem;
     margin: 0 auto;
     position: relative;
+    text-align: ${props => props.center ? 'center' : 'left'};
 `
 export const GridContainer = styled.div`
     display: grid;

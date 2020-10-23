@@ -12,8 +12,10 @@ export default function About({data}) {
     return (
         <Layout>
             <Hero bgImg={`https:${data.allContentfulHeroSection.edges[0].node.backgroundImage.file.url}`}>
-                <h1>{data.allContentfulHeroSection.edges[0].node.heading}</h1>
-                <h2>{data.allContentfulHeroSection.edges[0].node.subheading}</h2>
+                <Wrapper center>
+                    <h1>{data.allContentfulHeroSection.edges[0].node.heading}</h1>
+                    <h2>{data.allContentfulHeroSection.edges[0].node.subheading}</h2>
+                </Wrapper>
             </Hero>
             <TextSection patternBg >
                 {documentToReactComponents(data.allContentfulMixedContent.edges[0].node.textContent.json)}
