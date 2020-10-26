@@ -1,10 +1,11 @@
 import React, {useContext, useEffect, useRef} from 'react'
+import Img from 'gatsby-image'
 import styled from 'styled-components'
 
 import {NavContext} from '../../context/navContext'
 
 const Hero = (props) => {
-    const { bgVideo, bgVideoType, bgImg } = props;
+    const { bgVideo, bgVideoType, bgImg, bgImgFluid } = props;
     const {setNavSolid} = useContext(NavContext);
     const heroRef = useRef()
 
@@ -22,6 +23,16 @@ const Hero = (props) => {
 
     return (
         <Section bgImg={bgImg} ref={heroRef}>
+            <SectionBg 
+                style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    width: '100%',
+                    height: '100%'
+                }}
+                fluid={bgImgFluid}
+            />
             {bgVideo && (<VideoContainer>
                 <video muted loop autoPlay>
                     <source src={bgVideo} type={bgVideoType} />
@@ -43,7 +54,19 @@ const Section = styled.section`
     background-image: ${props => props.bgImg ? `url("${props.bgImg}")` : 'none'};
     background-position: center center;
     background-size: cover;
+`
 
+const SectionBg = styled(Img)`
+    position: relative;
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.5);
+    }
 `
 
 const VideoContainer = styled.div`
