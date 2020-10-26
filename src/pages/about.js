@@ -8,10 +8,9 @@ import TextSection from '../components/shared-ui/textSection'
 import {Wrapper, GridContainer} from '../components/styled-lib'
 
 export default function About({data}) {
-    console.log(data);
     return (
         <Layout>
-            <Hero bgImg={`https:${data.allContentfulHeroSection.edges[0].node.backgroundImage.file.url}`}>
+            <Hero bgImgFluid={data.allContentfulHeroSection.edges[0].node.backgroundImage.fluid}>
                 <Wrapper center>
                     <h1>{data.allContentfulHeroSection.edges[0].node.heading}</h1>
                     <h2>{data.allContentfulHeroSection.edges[0].node.subheading}</h2>
@@ -34,10 +33,8 @@ export const query = graphql`
           heading
           subheading
           backgroundImage {
-            file {
-              contentType
-              fileName
-              url
+            fluid {
+              srcSet
             }
           }
         }
