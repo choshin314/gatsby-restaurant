@@ -1,10 +1,27 @@
-import React from 'react'
+import React, {useContext, useEffect, useRef} from 'react'
 import styled from 'styled-components'
+
+import {NavContext} from '../../context/navContext'
 
 const Hero = (props) => {
     const { bgVideo, bgVideoType, bgImg } = props;
+    const {setNavSolid} = useContext(NavContext);
+    const heroRef = useRef()
+
+    const observerCallback = (entries) => {
+        entries.forEach(entry => {
+            !entry.isIntersecting ? setNavSolid(true) : setNavSolid(false);
+        })
+    }
+    const heroObserver = new IntersectionObserver(observerCallback, { rootMargin: "-100px 0px 0px 0px" });
+
+    useEffect(() => {
+        if(heroRef) heroObserver.observe(heroRef.current);
+        return (() => heroObserver.disconnect())
+    })
+
     return (
-        <Section bgImg={bgImg}>
+        <Section bgImg={bgImg} ref={heroRef}>
             {bgVideo && (<VideoContainer>
                 <video muted loop autoPlay>
                     <source src={bgVideo} type={bgVideoType} />
@@ -22,8 +39,11 @@ export default Hero
 
 const Section = styled.section`
     position: relative;
-    height: 100vh;
-    background: ${props => props.bgImg ? `url(${props.bgImg}) no-repeat center center cover` : 'none'};
+    height: 100vh;;
+    background-image: ${props => props.bgImg ? `url("${props.bgImg}")` : 'none'};
+    background-position: center center;
+    background-size: cover;
+
 `
 
 const VideoContainer = styled.div`

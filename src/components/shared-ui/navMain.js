@@ -20,6 +20,8 @@ const Nav = styled.nav`
     @media(min-width: ${devices.tablet}) {
         display: flex;
         ul {
+            padding: 0;
+            margin: 0;
             display: flex;
             list-style: none;
             li {

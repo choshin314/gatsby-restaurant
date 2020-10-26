@@ -5,7 +5,7 @@ import { Link } from 'gatsby'
 import NavMain from './navMain'
 import NavMobile from './navMobile'
 import NavLinks from './navLinks'
-import logo from '../../images/logoMain.svg'
+import logo from '../../images/logoHeader.svg'
 import {devices} from '../styled-lib'
 
 
@@ -26,12 +26,11 @@ const NavContainer = styled.div`
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    @media(min-width: ${devices.tablet}) {
-        justify-content: flex-end;
-    }
+
 `
 const Logo = styled(Link)`
     width: 100px;
+    height: 40px;
     border: var(--primary) 3px solid;
     overflow: hidden;
     display: flex;
@@ -39,11 +38,5 @@ const Logo = styled(Link)`
     align-items: center;
     img {
         object-fit: cover;
-    }
-    
-    @media(min-width: ${devices.tablet}) {
-        position: absolute;
-        left: 0;
-        top: 2rem;
     }
 `

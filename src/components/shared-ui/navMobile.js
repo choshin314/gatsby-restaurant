@@ -73,9 +73,9 @@ const BurgerBtn = styled.div`
 
 const Container = styled.div`
     width: 100vw;
-    height: calc(100vh - 4rem);
+    height: calc(100vh - 72px);
     position: fixed;
-    top: 116px;
+    top: 72px;
     left: 0;
     background: white;
     transition: transform .2s ease-in-out;
