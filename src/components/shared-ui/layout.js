@@ -2,18 +2,21 @@ import React from 'react'
 import styled from 'styled-components'
 
 import '../../styles/index.css'
+import {NavContextProvider} from '../../context/navContext'
 import Header from './header'
 import Footer from './footer'
 
 const Layout = (props) => {
     return (
-        <Container>
-            <Header />
-            <Main>
-                {props.children}
-            </Main>
-            <Footer />
-        </Container>
+        <NavContextProvider>
+            <Container>
+                <Header />
+                <Main>
+                    {props.children}
+                </Main>
+                <Footer />
+            </Container>
+        </NavContextProvider>
     )
 }
 
