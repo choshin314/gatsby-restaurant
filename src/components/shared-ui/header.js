@@ -19,7 +19,7 @@ const Header = () => {
 export default Header
 
 const StyledHeader = styled.header`
-    position: relative;
+    position: absolute;
     width: 100%;
     z-index: 110;
     @media(min-width: ${devices.tablet}) {

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 
 import NavMain from './navMain'
 import NavMobile from './navMobile'
@@ -10,9 +11,26 @@ import {devices} from '../styled-lib'
 
 
 const Nav = () => {
+    const data = useStaticQuery(graphql`
+        query NavQuery {
+            file(relativePath: {eq: "logoHeader.png"}) {
+                childImageSharp {
+                    fixed(width: 160, height: 40) {
+                        base64
+                        aspectRatio
+                        width
+                        height
+                        src
+                        srcSet
+                    }
+                }
+            }
+        }
+    `)
+
     return (
         <NavContainer>
-            <Logo to="/"><img src={logo} alt="Mala logo" /></Logo>
+            <Logo to="/"><Img fixed={data.file.childImageSharp.fixed} alt="Mala logo" objectFit="cover"/></Logo>
             <NavMain><NavLinks /></NavMain>
             <NavMobile><NavLinks /></NavMobile>
         </NavContainer>
@@ -29,14 +47,9 @@ const NavContainer = styled.div`
 
 `
 const Logo = styled(Link)`
-    width: 100px;
-    height: 40px;
     border: var(--primary) 3px solid;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    img {
-        object-fit: cover;
-    }
 `
