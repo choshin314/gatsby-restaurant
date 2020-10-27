@@ -5,24 +5,19 @@ import {devices} from '../styled-lib'
 
 const SplitSection = ({imgSide="left", imgWidth="40", bgImg, children}) => {
     const sectionRef = useRef(null);
+    
     useEffect(() => {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.3
-        };
         const observerCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("appear");
-                    observer.unobserve(entry.target);
-                }
-            })
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("appear")
+              observer.unobserve(entry.target)
+            }
+          })
         }
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-        if (sectionRef.current) observer.observe(sectionRef.current);
-
-        return () => observer.unobserve(sectionRef.current);
+        const sectionObserver = new IntersectionObserver(observerCallback, {rootMargin: "-100px 0px 0px 0px"});
+        if (sectionRef.current) sectionObserver.observe(sectionRef.current);
+        return () => sectionObserver.unobserve(sectionRef.current);
     }, [])
 
     return (

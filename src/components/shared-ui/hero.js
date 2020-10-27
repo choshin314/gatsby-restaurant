@@ -9,14 +9,13 @@ const Hero = (props) => {
     const {setNavSolid} = useContext(NavContext);
     const heroRef = useRef()
 
-    const observerCallback = (entries) => {
-        entries.forEach(entry => {
-            !entry.isIntersecting ? setNavSolid(true) : setNavSolid(false);
-        })
-    }
-    const heroObserver = new IntersectionObserver(observerCallback, { rootMargin: "-100px 0px 0px 0px" });
-
     useEffect(() => {
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                !entry.isIntersecting ? setNavSolid(true) : setNavSolid(false);
+            })
+        }
+        const heroObserver = new IntersectionObserver(observerCallback, { rootMargin: "-100px 0px 0px 0px" });
         if(heroRef) heroObserver.observe(heroRef.current);
         return (() => heroObserver.disconnect())
     })
