@@ -40,7 +40,9 @@ const Hero = (props) => {
                 </video>
             </VideoContainer>)}
             <Content>
-                {props.children}
+                <HeroImgContainer>
+                    {props.children}
+                </HeroImgContainer>
             </Content>
         </Section>
     )
@@ -113,4 +115,13 @@ const Content = styled.div`
     h1 {
         font-size: 2rem;
     }
+`
+
+const HeroImgContainer = styled.div`
+    width: 90%;
+    max-width: 500px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 `

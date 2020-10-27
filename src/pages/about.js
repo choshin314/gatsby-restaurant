@@ -1,5 +1,6 @@
 import React from "react"
 import {graphql, Link} from "gatsby"
+import Img from 'gatsby-image'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import Layout from '../components/shared-ui/layout'
@@ -11,10 +12,7 @@ export default function About({data}) {
     return (
         <Layout>
             <Hero bgImgFluid={data.allContentfulHeroSection.edges[0].node.backgroundImage.fluid}>
-                <Wrapper center>
-                    <h1>{data.allContentfulHeroSection.edges[0].node.heading}</h1>
-                    <h2>{data.allContentfulHeroSection.edges[0].node.subheading}</h2>
-                </Wrapper>
+                <Img fluid={data.allContentfulHeroSection.edges[0].node.contentImage.fluid} alt="Málà's Story (tldr: we love food!)" />
             </Hero>
             <TextSection patternBg >
                 {documentToReactComponents(data.allContentfulMixedContent.edges[0].node.textContent.json)}
@@ -34,7 +32,18 @@ export const query = graphql`
           subheading
           backgroundImage {
             fluid {
+              src
               srcSet
+              base64
+              aspectRatio
+            }
+          }
+          contentImage {
+            fluid {
+              src
+              srcSet
+              base64
+              aspectRatio
             }
           }
         }

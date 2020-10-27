@@ -1,13 +1,13 @@
 import React from "react"
 import {graphql, Link} from "gatsby"
+import Img from 'gatsby-image'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import Layout from '../components/shared-ui/layout'
 import Hero from '../components/shared-ui/hero'
 import SplitSection from '../components/shared-ui/splitSection'
 import TextSection from '../components/shared-ui/textSection'
-import still from '../videos/hero-still.png'
-import heroArt from '../images/homeHeroArt.svg'
+import heroArt from '../images/homeHeroArt.png'
 import cardBg from '../images/dumplings.svg'
 import {Wrapper, GridContainer} from '../components/styled-lib'
 import HomeCard from '../components/home/homeCard'
@@ -23,7 +23,7 @@ export default function Home({data}) {
         bgVideo={"https:" + pageContent[0].backgroundVideo.file.url}
         bgVideoType={pageContent[0].backgroundVideo.file.contentType}
       >
-        <img src={heroArt} alt="modern and authentic Szechuan Cuisine" />
+        <Img fluid={pageContent[0].contentImage.fluid} alt="modern and authentic Szechuan Cuisine"/>
       </Hero>
       <TextSection patternBg>
         <h1>Fast. Fresh. Flavorful.</h1>
@@ -39,25 +39,25 @@ export default function Home({data}) {
         <GridContainer columns="repeat(3, 1fr)">
           <HomeCard
             bgImage={cardBg}
-            heading="free high fives"
-            text="things get hoppin around lunch.   we suggest checking out our menu before you come in."
+            heading="see what's cookin'"
+            text="First time here?  Peep our menu and get hungry!"
             link={{text: "SEE MENU", location: "/menu"}}
           />
           <HomeCard
             bgImage={cardBg}
-            heading="free high fives"
-            text="things get hoppin around lunch.   we suggest checking out our menu before you come in."
-            link={{text: "SEE MENU", location: "/menu"}}
+            heading="our food = our passion"
+            text="Szechuan cookin' has been a part of our lives since the very beginning."
+            link={{text: "OUR STORY", location: "/about"}}
           />
           <HomeCard
             bgImage={cardBg}
-            heading="free high fives"
-            text="things get hoppin around lunch.   we suggest checking out our menu before you come in. things get hoppin around lunch.   we suggest checking out our menu before you come in."
-            link={{text: "SEE MENU", location: "/menu"}}
+            heading="holler at us!"
+            text="Come by and see us on the corner of Chouteau and Taylor.  Got a question?  Shoot us a message."
+            link={{text: "LOCATION/CONTACT", location: "/contact"}}
           />
         </GridContainer>
       </TextSection>
-      <SplitSection bgImg={still} imgSide="right" imgWidth="70">
+      <SplitSection bgImg={"https:" + pageContent[1].backgroundImage.file.url} imgSide="right" imgWidth="70">
         <h1>Private Events & Catering</h1>
         <p>Got a big party coming?  No problem, Málà is happy to host!  Our private room has a 20-seat capacity, so call ahead to reserve!</p>
         <p>Got a big party elsewhere?  Also not a problem!  Contact us today to inquire about event catering!</p>
@@ -83,6 +83,14 @@ export const query = graphql`
             file {
               contentType
               url
+            }
+          }
+          contentImage {
+            fluid {
+              src
+              srcSet
+              base64
+              aspectRatio
             }
           }
         }

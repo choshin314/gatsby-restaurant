@@ -1,5 +1,6 @@
 import React from "react"
-import {graphql, Link} from "gatsby"
+import {graphql} from "gatsby"
+import Img from 'gatsby-image'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import Layout from '../components/shared-ui/layout'
@@ -9,11 +10,17 @@ import TextSection from '../components/shared-ui/textSection'
 import {Wrapper, GridContainer} from '../components/styled-lib'
 import Menu from '../components/menu/menu'
 
+
 const MenuPage = ({data}) => {
     console.log(data)
     return (
         <Layout>
-            <Hero bgImgFluid={data.allContentfulHeroSection.edges[0].node.backgroundImage.fluid}></Hero>
+            <Hero bgImgFluid={data.allContentfulHeroSection.edges[0].node.backgroundImage.fluid}>
+                <Img 
+                    fluid={data.allContentfulHeroSection.edges[0].node.contentImage.fluid} 
+                    alt="check out our menu"
+                />
+            </Hero>
             <Menu />
         </Layout>
     )
@@ -22,18 +29,29 @@ const MenuPage = ({data}) => {
 export default MenuPage
 
 export const query = graphql`
-    query MyQuery {
-        allContentfulHeroSection(filter: {title: {eq: "Menu Hero"}}) {
-            edges {
-            node {
-                title
-                backgroundImage {
-                fluid {
-                    srcSet
-                }
-                }
+  query MyQuery {
+    allContentfulHeroSection(filter: { title: { eq: "Menu Hero" } }) {
+      edges {
+        node {
+          title
+          backgroundImage {
+            fluid {
+              src
+              srcSet
+              base64
+              aspectRatio
             }
+          }
+          contentImage {
+            fluid {
+              src
+              srcSet
+              base64
+              aspectRatio
             }
+          }
         }
-        }
+      }
+    }
+  }
 `
