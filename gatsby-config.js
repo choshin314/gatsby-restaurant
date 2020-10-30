@@ -19,6 +19,13 @@ module.exports = {
         spaceId: 'vq3awelcvugd',
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
       }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'localImages',
+        path: `${__dirname}/src/images/`
+      }
     }
   ],
 }
