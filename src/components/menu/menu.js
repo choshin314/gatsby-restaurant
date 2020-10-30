@@ -1,38 +1,84 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {graphql, useStaticQuery} from 'gatsby'
 import styled from 'styled-components'
 
 import TextSection from '../shared-ui/textSection'
-import MenuGrid from './menuGrid'
-
-const dummyItems = [
-    {
-        name: 'Item 1',
-        description: 'House blend of quinoa, chickpea, edamame, brown rice, served with a sweet garlic sauce',
-        img: "https://andrewzimmern.com/wp-content/uploads/Andrew-Zimmerns-Chengdu-Chicken-1-1600x800.jpg",
-        imgAlt: "chengdu chicken in a bowl"
-    },
-    {
-        name: 'Item 2',
-        description: 'House blend of quinoa, chickpea, edamame, brown rice, served with a sweet garlic sauce',
-        img: "https://andrewzimmern.com/wp-content/uploads/Andrew-Zimmerns-Chengdu-Chicken-1-1600x800.jpg",
-        imgAlt: "chengdu chicken in a bowl"
-    },
-    {
-        name: 'Item 3',
-        description: 'House blend of quinoa, chickpea, edamame, brown rice, served with a sweet garlic sauce',
-        img: "https://cafedelites.com/wp-content/uploads/2018/04/Best-Kung-Pao-Chicken-IMAGE-2.jpg",
-        imgAlt: "chengdu chicken in a bowl"
-    }
-]
+import MenuSection from './menuSection'
 
 const Menu = () => {
+    const data = useStaticQuery(graphql`
+        query MenuCategoriesQuery {
+            contentfulMenuLayout {
+                menuCategories {
+                    id
+                    category
+                    menu_item {
+                        id
+                        name
+                        slug
+                        description {
+                            description
+                        }
+                        price
+                        image {
+                            fluid {
+                                base64
+                                aspectRatio
+                                sizes
+                                src
+                                srcSet
+                                srcSetWebp
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `)
+    const menuCategories = data.contentfulMenuLayout.menuCategories;
     return (
         <TextSection patternBg >
-            <MenuGrid menuItems={dummyItems} />
-            <MenuGrid menuItems={dummyItems} />
-            <MenuGrid menuItems={dummyItems} />
+            <ButtonGrp>
+                <button>All</button>
+                <button>Apps</button>
+                <button>Noodles & Soups</button>
+                <button>Entrees</button>
+            </ButtonGrp>
+            <MenuFrame>
+                <MenuTrack>
+                    {menuCategories && menuCategories.map(({id, category, menu_item}) => (
+                        <MenuSection key={id} category={category} menuItems={menu_item} />
+                    ))}
+                </MenuTrack>
+            </MenuFrame>
         </TextSection>
     )
 }
 
 export default Menu
+
+const ButtonGrp = styled.div`
+    display: flex;
+    justify-content: center;
+    button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+`
+
+const MenuFrame = styled.div`
+    width: 100%;
+    min-height: 600px;
+    overflow-x: hidden;
+    border: 5px solid black;
+`
+const MenuTrack = styled.div`
+    width: 300%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    transform: translateX(0%);
+    transition: transform 0.1s ease-in;
+`

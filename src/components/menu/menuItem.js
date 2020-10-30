@@ -1,14 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import Img from 'gatsby-image'
 
 import {devices} from '../styled-lib'
 
-const MenuItem = ({img, imgAlt, name, description}) => {
+const MenuItem = ({img, name, description}) => {
     return (
         <ItemContainer>
-            <div className="imgContainer">
-                <img src={img} alt={imgAlt}/>
-            </div>
+            <Img fluid={img.fluid} alt={img.alt}/>
             <div className="textContainer">
                 <h3>{name}</h3>
                 <p>{description}</p>
