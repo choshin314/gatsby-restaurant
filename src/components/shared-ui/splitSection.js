@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react'
-import styled, {keyframes, css} from 'styled-components'
+import styled from 'styled-components'
 
 import {devices} from '../styled-lib'
 
@@ -22,9 +22,9 @@ const SplitSection = ({imgSide="left", imgWidth="40", bgImg, children}) => {
 
     return (
         <Section ref={sectionRef}>
-            {imgSide === 'left' && <ImageSide bgImg={bgImg} imgWidth={imgWidth} imgSide="left"/>}
+            {imgSide === 'left' && <ImgSide bgImg={bgImg} imgWidth={imgWidth} imgSide="left" />}
             <ContentSide imgWidth={imgWidth} imgSide={imgSide}>{children}</ContentSide>
-            {imgSide === 'right' && <ImageSide bgImg={bgImg} imgWidth={imgWidth} imgSide="right"/>}
+            {imgSide === 'right' && <ImgSide bgImg={bgImg} imgWidth={imgWidth} imgSide="right" />}
         </Section>
     )
 }
@@ -42,12 +42,14 @@ const Section = styled.section`
   }
 `
 
-const ImageSide = styled.div`
+const ImgSide = styled.div`
   background-image: url(${props => props.bgImg});
   background-size: cover;
   background-position: center center;
+  background-repeat: no-repeat;
   min-height: 300px;
   position: relative;
+  overflow: hidden;
   flex-grow: 1;
   flex-basis: ${props => props.imgWidth}%;
   transition: transform .350s ease-in-out;

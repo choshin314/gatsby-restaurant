@@ -62,7 +62,7 @@ const Menu = () => {
                 {menuCategories && menuCategories.map( (category, i) => (
                     <button name={`slide-${i}`}>{category.category}</button>
                 ))}
-                
+                <button className="snipcart-checkout">Checkout</button>
             </ButtonGrp>
             {/* <MenuFrame>
                 <MenuTrack className={state.showAll ? "show-all" : "show-section"} activeSlide={state.activeSlide} totalSlides={menuCategories.length}>

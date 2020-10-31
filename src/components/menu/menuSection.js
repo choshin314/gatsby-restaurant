@@ -13,7 +13,9 @@ const MenuSection = ({category, menuItems, index, activeSlide, showAll}) => {
                 {menuItems && menuItems.length > 0 && menuItems.map(item => (
                     <MenuItem 
                         key={item.id}
+                        id={item.id}
                         name={item.name} 
+                        price={item.price}
                         description={item.description.description} 
                         img={{ fluid: item.image.fluid, alt: item.name }} 
                     />
