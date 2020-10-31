@@ -26,6 +26,13 @@ module.exports = {
         name: 'localImages',
         path: `${__dirname}/src/images/`
       }
+    },
+    {
+      resolve: 'gatsby-plugin-snipcartv3',
+      options: {
+        apiKey: process.env.SNIPCART_KEY,
+        autopop: false
+      }
     }
   ],
 }
