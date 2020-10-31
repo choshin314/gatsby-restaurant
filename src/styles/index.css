@@ -7,6 +7,10 @@
     --dark: #333;
     --light-grey: #e1e1e1;
     --dark-grey: #2F4858;
+    --mediaLgPhone: '600px';
+    --mediaTablet: '768px';
+    --mediaLaptop: '1400px';
+    --mediaWide: '1800px';
 }
 
 html, body {
