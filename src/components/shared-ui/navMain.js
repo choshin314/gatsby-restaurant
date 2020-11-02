@@ -25,7 +25,7 @@ const Nav = styled.nav`
             display: flex;
             list-style: none;
             li {
-                margin-right: 3rem;
+                margin-right: 2rem;
             }
         }
     }
