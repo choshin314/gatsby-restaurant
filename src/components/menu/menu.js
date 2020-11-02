@@ -58,23 +58,11 @@ const Menu = () => {
     return (
         <TextSection patternBg >
             <ButtonGrp onClick={navigateMenu}>
-                <button name="all">All</button>
+                <button name="all" className={state.showAll ? "activeBtn" : ""}>All</button>
                 {menuCategories && menuCategories.map( (category, i) => (
-                    <button name={`slide-${i}`}>{category.category}</button>
+                    <button name={`slide-${i}`} className={state.activeSlide === i ? "activeBtn" : ""}>{category.category}</button>
                 ))}
-                <button className="snipcart-checkout">Checkout</button>
             </ButtonGrp>
-            {/* <MenuFrame>
-                <MenuTrack className={state.showAll ? "show-all" : "show-section"} activeSlide={state.activeSlide} totalSlides={menuCategories.length}>
-                    {menuCategories[state.activeSlide] && (
-                        <MenuSection 
-                            category={menuCategories[state.activeSlide].category} 
-                            menuItems={menuCategories[state.activeSlide].menu_item} 
-                            className={state.showAll ? "show-all" : "show-section"}
-                        />
-                    )}
-                </MenuTrack>
-            </MenuFrame> */}
             <MenuFrame>
                 <MenuTrack className={state.showAll ? "show-all" : "show-section"} activeSlide={state.activeSlide} totalSlides={menuCategories.length}>
                     {menuCategories && menuCategories.length > 0 && menuCategories.map((cat, index) => (
@@ -100,11 +88,31 @@ const ButtonGrp = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     button {
-        padding: 1rem 2rem;
-        font-size: 1rem;
+        font-family: 'Manrope','Montserrat', sans-serif;
+        padding: 1rem;
+        font-size: 1.3rem;
+        font-weight: 700;
         background: transparent;
+        color: var(--primary);
         border: none;
         cursor: pointer;
+        position: relative;
+        text-align: center;
+        &::after {
+            box-sizing: border-box;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 5px solid var(--primary);
+            opacity: 0;
+            transition: opacity .2s ease-out;
+        }
+        &:focus::after, &.activeBtn::after {
+            opacity: 1;
+        }
     }
 `
 
