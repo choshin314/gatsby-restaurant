@@ -8,6 +8,7 @@ const NavLinks = (props) => {
         <NavItem><Link to="/menu" activeClassName="active">Menu</Link></NavItem>
         <NavItem><Link to="/about" activeClassName="active">About</Link></NavItem>
         <NavItem><Link to="/location" activeClassName="active">Location</Link></NavItem>
+        <NavItem><span className="snipcart-checkout">View Order (<span class="snipcart-items-count">0</span>)</span></NavItem>
         </>
     )
 }
@@ -15,7 +16,8 @@ const NavLinks = (props) => {
 export default NavLinks
 
 const NavItem = styled.li`
-    a {
+    cursor: pointer;
+    a, span.snipcart-checkout {
         color: var(--primary);
         text-decoration: none;
         font-size: ${props => props.mobile ? "1.5rem" : "1.2rem"};
@@ -31,7 +33,7 @@ const NavItem = styled.li`
             background: var(--primary);
         }
     }
-    a::before {
+    a::before, span.snipcart-checkout::before {
         content: '';
         color: inherit;
         position: absolute;
@@ -44,7 +46,7 @@ const NavItem = styled.li`
         transform: scaleX(0);
         transform-origin: right;
     }
-    a:hover::before {
+    a:hover::before, span.snipcart-checkout:hover::before {
         transform: scaleX(1);
         transform-origin: left;
     }
