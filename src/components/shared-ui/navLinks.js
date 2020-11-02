@@ -7,7 +7,7 @@ const NavLinks = (props) => {
         <>
         <NavItem><Link to="/menu" activeClassName="active">Menu</Link></NavItem>
         <NavItem><Link to="/about" activeClassName="active">About</Link></NavItem>
-        <NavItem><Link to="/location" activeClassName="active">Location</Link></NavItem>
+        <NavItem><Link to="/contact" activeClassName="active">Contact</Link></NavItem>
         <NavItem><span className="snipcart-checkout">View Order (<span class="snipcart-items-count">0</span>)</span></NavItem>
         </>
     )
