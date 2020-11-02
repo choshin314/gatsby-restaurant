@@ -8,6 +8,7 @@ import Hero from '../components/shared-ui/hero'
 import SplitSection from '../components/shared-ui/splitSection'
 import TextSection from '../components/shared-ui/textSection'
 import {GridContainer} from '../components/styled-lib'
+import {ButtonLink} from '../components/shared-ui/button'
 import HomeCard from '../components/home/homeCard'
 
 export default function Home({data}) {
@@ -28,7 +29,7 @@ export default function Home({data}) {
       </TextSection>
       <SplitSection bgImg={`https:${pageContent[2].backgroundImage.file.url}`} imgWidth="55">
         {documentToReactComponents(pageContent[2].textContent.json)}
-        <Link to="/menu">See Menu</Link>
+        <ButtonLink to="/menu">See Menu</ButtonLink>
       </SplitSection>
       <TextSection patternBg>
         <h1>Check Us Out!</h1>
@@ -45,7 +46,7 @@ export default function Home({data}) {
       </TextSection>
       <SplitSection bgImg={`https:${pageContent[3].backgroundImage.file.url}`} imgSide="right" imgWidth="70">
         {documentToReactComponents(pageContent[3].textContent.json)}
-        <Link to="/contact">Contact Us</Link>
+        <ButtonLink to="/contact">Contact Us</ButtonLink>
       </SplitSection>
     </Layout>
   )
