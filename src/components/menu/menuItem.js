@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
+import {faArrowRight} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 import {devices} from '../styled-lib'
 
@@ -10,15 +12,16 @@ const MenuItem = ({img, name, id, price, description}) => {
             <div className="textContainer">
                 <h3>{name}</h3>
                 <p>{description}</p>
-                <button class="snipcart-add-item"
+                <AddToOrder className="snipcart-add-item"
                     data-item-id={id}
                     data-item-price={price}
                     data-item-url="/menu"
                     data-item-description={description}
                     data-item-name={name}
                 >
-                    Add to cart
-                </button>
+                    Add to Order
+                    <FontAwesomeIcon icon={faArrowRight} />
+                </AddToOrder>
             </div>
             <Img fluid={img.fluid} alt={img.alt}/>
         </ItemContainer>
@@ -72,5 +75,28 @@ const ItemContainer = styled.div`
         &:hover h3::after {
             transform: scaleX(1);
         }
+    }
+`
+const AddToOrder = styled.button`
+    position: relative;
+    background: transparent;
+    font-family: 'Manrope', 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--primary);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    &:active, &:focus {
+        outline-style: none;
+    }
+    & > svg {
+        margin-left: .5rem;
+        transition: opacity .2s ease-out, transform .2s ease-out;
+        transform: translateX(-110%);
+        opacity: 0;
+    }
+    &:hover > svg, &:active > svg {
+        transform: translateX(0);
+        opacity: 1;
     }
 `
