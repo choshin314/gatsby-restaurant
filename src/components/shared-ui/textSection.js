@@ -35,4 +35,8 @@ const Section = styled.section`
             text-align: ${props => props.alignText};
         }
     }
+    a {
+        text-decoration: none;
+        color: var(--primary);
+    }
 `

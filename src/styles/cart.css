@@ -2664,7 +2664,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   min-height: 0px;
-  max-height: calc(100% - 8rem);
+  max-height: calc(100% - 10rem);
   width: 90%;
   max-width: 1200px;
   z-index: 101;
