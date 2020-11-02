@@ -11,7 +11,7 @@ const Footer = () => {
             </Block>
             <Block>
                 <p>Monday - Saturday: 11:00 AM - 10:00 PM</p>
-                <p>4476 Chouteau Ave, Saint Louis, MO 63110</p>
+                <p>4480 Chouteau Ave, Saint Louis, MO 63110</p>
             </Block>
             <Block>
                 <Phone href="tel:+13140000000">Call Us: (314) 000-0000</Phone>
