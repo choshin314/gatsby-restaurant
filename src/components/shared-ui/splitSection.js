@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import {devices} from '../styled-lib'
 
-const SplitSection = ({imgSide="left", imgWidth="40", bgImg, children}) => {
+const SplitSection = ({imgSide="left", imgWidth="40", bgImg, bgColor="white", children}) => {
     const sectionRef = useRef(null);
     
     useEffect(() => {
@@ -23,7 +23,7 @@ const SplitSection = ({imgSide="left", imgWidth="40", bgImg, children}) => {
     return (
         <Section ref={sectionRef}>
             {imgSide === 'left' && <ImgSide bgImg={bgImg} imgWidth={imgWidth} imgSide="left" />}
-            <ContentSide imgWidth={imgWidth} imgSide={imgSide}>{children}</ContentSide>
+            <ContentSide imgWidth={imgWidth} imgSide={imgSide} bgColor={bgColor}>{children}</ContentSide>
             {imgSide === 'right' && <ImgSide bgImg={bgImg} imgWidth={imgWidth} imgSide="right" />}
         </Section>
     )
@@ -60,7 +60,7 @@ const ImgSide = styled.div`
 `
 
 const ContentSide = styled.div`
-  background-color: white;
+  background-color: ${props => props.bgColor};
   position: relative;
   flex-grow: 1;
   flex-basis: calc(100% - ${props => props.imgWidth}%);
