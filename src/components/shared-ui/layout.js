@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import '../../styles/index.css'
 import '../../styles/cart.css'
+
 import {NavContextProvider} from '../../context/navContext'
 import Header from './header'
 import Footer from './footer'
