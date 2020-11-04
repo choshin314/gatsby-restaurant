@@ -2667,7 +2667,7 @@
   max-height: calc(100% - 10rem);
   width: 90%;
   max-width: 1200px;
-  z-index: 101;
+  z-index: 130;
 }
 
 @keyframes slideIn {
