@@ -8,35 +8,7 @@ import MenuItemModal from './menuItemModal'
 import {MenuContext} from '../../context/menuContext'
 
 const Menu = () => {
-    const data = useStaticQuery(graphql`
-        query MenuCategoriesQuery {
-            contentfulMenuLayout {
-                menuCategories {
-                    id
-                    category
-                    menu_item {
-                        id
-                        name
-                        slug
-                        description {
-                            description
-                        }
-                        price
-                        image {
-                            fluid {
-                                base64
-                                aspectRatio
-                                sizes
-                                src
-                                srcSet
-                                srcSetWebp
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    `)
+    const data = useStaticQuery(menuQuery)
     const menuCategories = data.contentfulMenuLayout.menuCategories;
     const { state: menuState, dispatch } = useContext(MenuContext);
 
@@ -77,6 +49,36 @@ const Menu = () => {
 }
 
 export default Menu
+
+const menuQuery = graphql`
+    query MenuCategoriesQuery {
+        contentfulMenuLayout {
+            menuCategories {
+                id
+                category
+                menu_item {
+                    id
+                    name
+                    slug
+                    description {
+                        description
+                    }
+                    price
+                    image {
+                        fluid {
+                            base64
+                            aspectRatio
+                            sizes
+                            src
+                            srcSet
+                            srcSetWebp
+                        }
+                    }
+                }
+            }
+        }
+    }
+`
 
 const ButtonGrp = styled.div`
     display: flex;
