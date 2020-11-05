@@ -6,9 +6,6 @@ import Img from 'gatsby-image'
 import NavMain from './navMain'
 import NavMobile from './navMobile'
 import NavLinks from './navLinks'
-import logo from '../../images/logoHeader.svg'
-import {devices} from '../styled-lib'
-
 
 const Nav = () => {
     const data = useStaticQuery(graphql`
