@@ -8,11 +8,13 @@ import {NavContextProvider} from '../../context/navContext'
 import {MenuContextProvider} from '../../context/menuContext'
 import Header from './header'
 import Footer from './footer'
+import SEO from '../seo'
 
 const Layout = (props) => {
     return (
         <NavContextProvider>
             <MenuContextProvider>
+                <SEO title={props.title} description={props.description} />
                 <Container>
                     <Header />
                     <Main>
