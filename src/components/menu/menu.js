@@ -1,4 +1,4 @@
-import React, {useReducer, useState, useContext} from 'react'
+import React, {useContext} from 'react'
 import {graphql, useStaticQuery} from 'gatsby'
 import styled from 'styled-components'
 
@@ -71,7 +71,7 @@ const Menu = () => {
                     ))}
                 </MenuTrack>
             </MenuFrame>
-            {/* <MenuItemModal open /> */}
+            {menuState.modalOpen && <MenuItemModal />}
         </TextSection>
     )
 }

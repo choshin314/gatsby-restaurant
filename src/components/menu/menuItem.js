@@ -1,27 +1,36 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 import {faArrowRight} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
-import {devices} from '../styled-lib'
+import {MenuContext} from '../../context/menuContext'
 
 const MenuItem = ({img, name, id, price, description}) => {
+    const {dispatch} = useContext(MenuContext);
     return (
         <ItemContainer>
             <div className="textContainer">
                 <h3>{name}</h3>
                 <p>{description}</p>
-                <AddToOrder className="snipcart-add-item"
+                <span className="snipcart-add-item"
                     data-item-id={id}
                     data-item-price={price}
                     data-item-url="/menu"
                     data-item-description={description}
                     data-item-name={name}
+                ></span>
+                <OpenModal 
+                    onClick={() => {
+                        dispatch({ 
+                            type: "menuModal/modalOpened", 
+                            payload: { id, name, price, description, img } 
+                        })
+                    }} 
                 >
-                    Add to Order
+                    ORDER ONLINE
                     <FontAwesomeIcon icon={faArrowRight} />
-                </AddToOrder>
+                </OpenModal>
             </div>
             <Img fluid={img.fluid} alt={img.alt}/>
         </ItemContainer>
@@ -77,7 +86,7 @@ const ItemContainer = styled.div`
         }
     }
 `
-const AddToOrder = styled.button`
+const OpenModal = styled.button`
     position: relative;
     background: transparent;
     font-family: 'Manrope', 'Montserrat', sans-serif;
