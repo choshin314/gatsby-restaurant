@@ -15,7 +15,7 @@ const MenuItemModal = () => {
     useEffect(() => {
         console.log( moment().tz('America/Chicago').format('ddd HHmm') )
         const dayTime = moment().tz('America/Chicago').format('ddd HHmm').split(' ');
-        if ( dayTime[0] === "Sun" || parseInt(dayTime[1]) > 2045 ) {
+        if ( dayTime[0] === "Sun" || parseInt(dayTime[1]) < 1059  || parseInt(dayTime[1]) > 2045 ) {
             setIsTakingOrders(false);
         } else {
             setIsTakingOrders(true);
