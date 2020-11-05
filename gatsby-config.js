@@ -9,6 +9,12 @@ require("dotenv").config({
 
 module.exports = {
   /* Your site config here */
+  siteMetadata: {
+    title: "Málà Szechuan Cuisine",
+    titleTemplate: "%s | Málà Szechuan Cuisine",
+    description: "Málà is the hottest Szechuan-style Chinese restaurant in St. Louis",
+    siteUrl: "https://malacuisine.netlify.app"
+  },
   plugins: [
     'gatsby-plugin-styled-components',
     `gatsby-transformer-sharp`, 
