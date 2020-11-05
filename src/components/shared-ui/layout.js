@@ -5,19 +5,22 @@ import '../../styles/index.css'
 import '../../styles/cart.css'
 
 import {NavContextProvider} from '../../context/navContext'
+import {MenuContextProvider} from '../../context/menuContext'
 import Header from './header'
 import Footer from './footer'
 
 const Layout = (props) => {
     return (
         <NavContextProvider>
-            <Container>
-                <Header />
-                <Main>
-                    {props.children}
-                </Main>
-                <Footer />
-            </Container>
+            <MenuContextProvider>
+                <Container>
+                    <Header />
+                    <Main>
+                        {props.children}
+                    </Main>
+                    <Footer />
+                </Container>
+            </MenuContextProvider>
         </NavContextProvider>
     )
 }
