@@ -1,17 +1,11 @@
-import React, {useReducer, useState} from 'react'
+import React, {useReducer, useState, useContext} from 'react'
 import {graphql, useStaticQuery} from 'gatsby'
 import styled from 'styled-components'
 
 import TextSection from '../shared-ui/textSection'
 import MenuSection from './menuSection'
-
-function reducer(state, action) {
-    switch (action.type) {
-        case 'showAll': return { showAll: true, activeSlide: null };
-        case 'showSection': return { showAll: false, activeSlide: action.index };
-        default: return { showAll: true, activeSlide: null };
-    }
-}
+import MenuItemModal from './menuItemModal'
+import {MenuContext} from '../../context/menuContext'
 
 const Menu = () => {
     const data = useStaticQuery(graphql`
@@ -44,39 +38,40 @@ const Menu = () => {
         }
     `)
     const menuCategories = data.contentfulMenuLayout.menuCategories;
-    const [state, dispatch] = useReducer(reducer, {showAll: true, activeSlide: null})
-    function navigateMenu(e) {
+    const { state: menuState, dispatch } = useContext(MenuContext);
+
+    function handleMenuSections(e) {
         const {nodeName, name} = e.target;
         if (nodeName === "BUTTON") {
             name === "all" ? 
-            dispatch( { type: 'showAll' } ) : 
-            dispatch( { type: 'showSection', index: parseInt(name.replace('slide-', '')) })
+            dispatch( { type: 'menuSlider/showAll' } ) : 
+            dispatch( { type: 'menuSlider/showSection', payload: parseInt(name.replace('slide-', '')) })
         }
     }
-    console.log(menuCategories[state.activeSlide])
-    console.log(state);
+
     return (
         <TextSection patternBg >
-            <ButtonGrp onClick={navigateMenu}>
-                <button name="all" className={state.showAll ? "activeBtn" : ""}>All</button>
+            <ButtonGrp onClick={handleMenuSections}>
+                <button name="all" className={menuState.showAll ? "activeBtn" : ""}>All</button>
                 {menuCategories && menuCategories.map( (category, i) => (
-                    <button name={`slide-${i}`} className={state.activeSlide === i ? "activeBtn" : ""}>{category.category}</button>
+                    <button name={`slide-${i}`} className={menuState.showSection === i ? "activeBtn" : ""}>{category.category}</button>
                 ))}
             </ButtonGrp>
             <MenuFrame>
-                <MenuTrack className={state.showAll ? "show-all" : "show-section"} activeSlide={state.activeSlide} totalSlides={menuCategories.length}>
+                <MenuTrack className={menuState.showAll ? "show-all" : "show-section"} activeSlide={menuState.showSection} totalSlides={menuCategories.length}>
                     {menuCategories && menuCategories.length > 0 && menuCategories.map((cat, index) => (
                         <MenuSection 
                             key={cat.id}
                             category={cat.category} 
                             menuItems={cat.menu_item} 
-                            showAll={state.showAll}
+                            showAll={menuState.showAll}
                             index={index}
-                            activeSlide={state.activeSlide}
+                            activeSlide={menuState.showSection}
                         />
                     ))}
                 </MenuTrack>
             </MenuFrame>
+            {/* <MenuItemModal open /> */}
         </TextSection>
     )
 }
