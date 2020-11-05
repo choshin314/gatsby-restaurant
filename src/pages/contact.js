@@ -13,10 +13,10 @@ import {Wrapper, GridContainer} from '../components/styled-lib'
 
 import mapPic from '../images/map5.png'
 
-export default function About({data}) {
+export default function Contact({data}) {
     const {contentfulHeroSection: heroData, contentfulMixedContent: textData } = data;
     return (
-        <Layout>
+        <Layout title="Contact & Location" description="Mala is located in the heart of the Grove off Chouteau and Taylor.">
             <Hero bgImgFluid={heroData.backgroundImage.fluid}>
                 <Img fluid={heroData.contentImage.fluid} alt="Málà's Story (tldr: we love food!)" />
             </Hero>

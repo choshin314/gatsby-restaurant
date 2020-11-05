@@ -16,7 +16,7 @@ export default function Home({data}) {
   console.log(pageContent[4])
 
   return (
-    <Layout>
+    <Layout title="Welcome to Málà">
       <Hero
         bgImgFluid={pageContent[0].backgroundImage.fluid}
         bgVideo={"https:" + pageContent[0].backgroundVideo.file.url}

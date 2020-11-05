@@ -10,7 +10,7 @@ import {Wrapper, GridContainer} from '../components/styled-lib'
 
 export default function About({data}) {
     return (
-        <Layout>
+        <Layout title="Málà's Story" description="Here at Málà, our food is our passion.  We do what we love.  Read our story.">
             <Hero bgImgFluid={data.allContentfulHeroSection.edges[0].node.backgroundImage.fluid}>
                 <Img fluid={data.allContentfulHeroSection.edges[0].node.contentImage.fluid} alt="Málà's Story (tldr: we love food!)" />
             </Hero>

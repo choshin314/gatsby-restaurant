@@ -12,9 +12,8 @@ import Menu from '../components/menu/menu'
 
 
 const MenuPage = ({data}) => {
-    console.log(data)
     return (
-        <Layout>
+        <Layout title="Our Menu" description="If you're looking for authentic Szechuan eats, you've come to the right place.  Check out our menu.">
             <Hero bgImgFluid={data.allContentfulHeroSection.edges[0].node.backgroundImage.fluid}>
                 <Img 
                     fluid={data.allContentfulHeroSection.edges[0].node.contentImage.fluid} 
