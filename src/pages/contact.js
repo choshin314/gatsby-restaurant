@@ -14,9 +14,9 @@ import {Wrapper, GridContainer} from '../components/styled-lib'
 import mapPic from '../images/map5.png'
 
 export default function Contact({data}) {
-    const {contentfulHeroSection: heroData, contentfulMixedContent: textData } = data;
+    const {contentfulSeo, contentfulHeroSection: heroData, contentfulMixedContent: textData } = data;
     return (
-        <Layout title="Contact & Location" description="Mala is located in the heart of the Grove off Chouteau and Taylor.">
+        <Layout title={contentfulSeo.metaTitle} description={contentfulSeo.metaDescription}>
             <Hero bgImgFluid={heroData.backgroundImage.fluid}>
                 <Img fluid={heroData.contentImage.fluid} alt="Málà's Story (tldr: we love food!)" />
             </Hero>
@@ -34,6 +34,10 @@ export default function Contact({data}) {
 
 export const query = graphql`
   query ContactQuery {
+    contentfulSeo(name: { eq: "Contact SEO"}) {
+      metaTitle
+      metaDescription
+    }
     contentfulHeroSection(title: { eq: "Contact Hero" }) {
       backgroundImage {
         fluid {

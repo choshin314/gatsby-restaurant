@@ -12,11 +12,11 @@ import {ButtonLink} from '../components/shared-ui/button'
 import HomeCard from '../components/home/homeCard'
 
 export default function Home({data}) {
-  const {pageContent} = data.contentfulPageContainer;
+  const {pageContent, pageSeo} = data.contentfulPageContainer;
   console.log(pageContent[4])
 
   return (
-    <Layout title="Welcome to Málà">
+    <Layout title={pageSeo.metaTitle} description={pageSeo.metaDescription}>
       <Hero
         bgImgFluid={pageContent[0].backgroundImage.fluid}
         bgVideo={"https:" + pageContent[0].backgroundVideo.file.url}
@@ -55,6 +55,10 @@ export default function Home({data}) {
 export const query = graphql`
   query HomePageQuery {
     contentfulPageContainer(pageTitle: {eq: "Home Page"}) {
+      pageSeo {
+        metaTitle
+        metaDescription
+      }
       pageContent {
         ... on ContentfulHeroSection {
           heading

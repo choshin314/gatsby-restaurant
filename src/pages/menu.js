@@ -13,7 +13,7 @@ import Menu from '../components/menu/menu'
 
 const MenuPage = ({data}) => {
     return (
-        <Layout title="Our Menu" description="If you're looking for authentic Szechuan eats, you've come to the right place.  Check out our menu.">
+        <Layout title={data.contentfulSeo.metaTitle} description={data.contentfulSeo.metaDescription}>
             <Hero bgImgFluid={data.allContentfulHeroSection.edges[0].node.backgroundImage.fluid}>
                 <Img 
                     fluid={data.allContentfulHeroSection.edges[0].node.contentImage.fluid} 
@@ -29,6 +29,10 @@ export default MenuPage
 
 export const query = graphql`
   query MyQuery {
+    contentfulSeo(name: { eq: "Menu SEO" }) {
+      metaTitle
+      metaDescription
+    }
     allContentfulHeroSection(filter: { title: { eq: "Menu Hero" } }) {
       edges {
         node {
