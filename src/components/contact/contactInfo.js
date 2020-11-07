@@ -10,7 +10,7 @@ const ContactInfo = ({hours, address, map, phone}) => (
         <div className="info-block">
             <h3>HOURS OF OPERATION</h3>
             <span>Monday - Saturday</span>
-            <span>11 A.M. to 9 P.M.</span>
+            <span>11 A.M. to 10 P.M.</span>
         </div>
         <div className="info-block info-block--b">
             <h3>OUR LOCATION</h3>

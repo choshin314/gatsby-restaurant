@@ -15,7 +15,7 @@ const MenuItemModal = () => {
     useEffect(() => {
         console.log( moment().tz('America/Chicago').format('ddd HHmm') )
         const dayTime = moment().tz('America/Chicago').format('ddd HHmm').split(' ');
-        if ( dayTime[0] === "Sun" || parseInt(dayTime[1]) < 1059  || parseInt(dayTime[1]) > 2045 ) {
+        if ( dayTime[0] === "Sun" || parseInt(dayTime[1]) < 1100  || parseInt(dayTime[1]) > 2145 ) {
             setIsTakingOrders(false);
         } else {
             setIsTakingOrders(true);
@@ -45,7 +45,7 @@ const MenuItemModal = () => {
                     data-item-name={selectedMenuItem.name}
                     disabled={!isTakingOrders}
                 >
-                    {isTakingOrders ? "ADD TO ORDER" : "ORDER FROM 11AM-8:45PM MON-SAT"}
+                    {isTakingOrders ? "ADD TO ORDER" : "ORDER FROM 11AM-9:45PM MON-SAT"}
                 </AddToOrder>
             </ContentDiv>
             <Exit onClick={(e) => dispatch({type: "menuModal/modalClosed"})} >
