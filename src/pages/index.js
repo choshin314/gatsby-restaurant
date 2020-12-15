@@ -24,14 +24,14 @@ export default function Home({data}) {
       >
         <Img fluid={pageContent[0].contentImage.fluid} alt="modern and authentic Szechuan Cuisine"/>
       </Hero>
-      <TextSection patternBg>
+      <TextSection >
         {documentToReactComponents(pageContent[1].textContent.json)}
       </TextSection>
       <SplitSection bgImg={`https:${pageContent[2].backgroundImage.file.url}`} imgWidth="55">
         {documentToReactComponents(pageContent[2].textContent.json)}
         <ButtonLink to="/menu">See Menu</ButtonLink>
       </SplitSection>
-      <TextSection patternBg>
+      <TextSection >
         <h1>Check Us Out!</h1>
         <GridContainer columns="repeat(3, 1fr)">
           {pageContent[4].cards.map(card => (

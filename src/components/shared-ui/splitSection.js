@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
 
-import {devices} from '../styled-lib'
+import {devices, Wrapper} from '../styled-lib'
 
 const SplitSection = ({imgSide="left", imgWidth="40", bgImg, bgColor="white", children}) => {
     const sectionRef = useRef(null);
@@ -21,17 +21,21 @@ const SplitSection = ({imgSide="left", imgWidth="40", bgImg, bgColor="white", ch
     }, [])
 
     return (
-        <Section ref={sectionRef}>
+      <section>
+        <Wrapper>  
+          <SplitDiv ref={sectionRef}>
             {imgSide === 'left' && <ImgSide bgImg={bgImg} imgWidth={imgWidth} imgSide="left" />}
             <ContentSide imgWidth={imgWidth} imgSide={imgSide} bgColor={bgColor}>{children}</ContentSide>
             {imgSide === 'right' && <ImgSide bgImg={bgImg} imgWidth={imgWidth} imgSide="right" />}
-        </Section>
+          </SplitDiv>
+        </Wrapper>
+      </section>
     )
 }
 
 export default SplitSection
 
-const Section = styled.section`
+const SplitDiv = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -52,10 +56,13 @@ const ImgSide = styled.div`
   overflow: hidden;
   flex-grow: 1;
   flex-basis: ${props => props.imgWidth}%;
-  transition: transform .350s ease-in-out;
+  
   transform: translateX(${props => props.imgSide === "left" ? "100%" : "-100%"});
-  ${Section}.appear & {
+  opacity: 0;
+  ${SplitDiv}.appear & {
     transform: translateX(0);
+    opacity: 1;
+    transition: opacity .5s ease-in-out, transform .250s ease-in-out
   }
 `
 
@@ -64,14 +71,15 @@ const ContentSide = styled.div`
   position: relative;
   flex-grow: 1;
   flex-basis: calc(100% - ${props => props.imgWidth}%);
+  padding-bottom: 2rem;
   z-index: 100;
-  padding: 2rem;
   opacity: 0;
   transition: opacity 300ms ease-in-out;
-  ${Section}.appear & {
+  ${SplitDiv}.appear & {
       opacity: 1;
   }
   @media(min-width: ${devices.tablet}) {
+    padding-bottom: 2rem;
     &::after {
       content: "";
       position: absolute;
